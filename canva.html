@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Aula24-10</title>
+	<script>
+		function desenhar(){
+			var figura = document.querySelector("#minhaTela");
+			if(figura.getContext){
+				var retangulo = figura.getContext("2d");
+				var linha = figura.getContext("2d");
+				var circulo = figura.getContext("2d");
+			}
+			function animarCirculo(tempo){
+				circulo.clearRect(0,0,figura.width, figura.height);
+    
+                retangulo.fillStyle = "blue";
+				retangulo.fillRect(50,50,400,200);
+				
+                linha.lineWidth = 5;
+                linha.strokeStyle = "red";
+                linha.moveTo(100,200);
+                linha.lineTo(170,100);
+                linha.lineTo(240,300);
+                linha.stroke();
+
+                circulo.fillStyle = "yellow";
+                circulo.beginPath();
+                circulo.arc(200, 200, 37.5 + 37.5 * Math.sin(tempo/300), 0, 2 * Math.PI);
+                circulo.fill();
+                circulo.lineWidth = 2;
+                circulo.strokeStyle = "aqua"; 
+                circulo.stroke();
+                            
+                requestAnimationFrame(animarCirculo);
+			} 
+			requestAnimationFrame(animarCirculo);
+		}
+		window.onload = desenhar;
+	</script>
+</head>
+<body>
+	<canvas id="minhaTela" height="500" width="600">
+</body>
+</html>
